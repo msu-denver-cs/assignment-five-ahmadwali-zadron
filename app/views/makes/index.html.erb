@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Makes</h1>
+
+<%= link_to 'Log out', destroy_user_session_path, method::delete %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @makes.each do |make| %>
+      <tr>
+        <td><%= make.name %></td>
+        <td><%= make.Country %></td>
+        <td><%= link_to 'Show', make %></td>
+        <td><%= link_to 'Edit', edit_make_path(make) %></td>
+        <td><%= link_to 'Destroy', make, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Make', new_make_path %>
+

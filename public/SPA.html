@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery SPA</title>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+
+<button onclick="fetch('cars', ['VIN', 'make', 'model'])">Cars</button>
+<button onclick="fetch('parts', ['name'])">parts</button>
+<button onclick="fetch('make', ['name'])">makes</button>
+
+<div id="Name">
+
+</div>
+
+<div id="list">
+
+</div>
+
+<script>
+
+
+    var fetch = function (which, fields) {
+        $("#list").empty();
+        $.get("http://localhost:3000/" + which + ".json", true)
+            .done(function(json){
+            for (item in json) {
+                lis = "<li>";
+                for (field in fields) {
+                    lis += json[item][fields[field]] + " ";
+                }
+                lis += "</li>";
+                $("#list").append(lis);
+                }
+            })
+            .fail(function(json){console.log("fail");})
+        }
+    };
+
+</script>
+</body>
+</html>

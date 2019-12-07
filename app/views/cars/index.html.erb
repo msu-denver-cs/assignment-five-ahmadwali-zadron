@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cars</h1><br>
+
+
+<h2><strong>Search</strong></h2>
+<%#= form_tag(search_cars_url , method: "get") do %>
+  <%#= text_field_tag :search, nil, placeholder: "Search", class: "form-control mr-sm-2" %>
+  <%#= submit_tag "Search", class: "btn btn-light my-2 my-sm-0"%>
+  <%# end %>
+
+<%= form_tag(search_cars_url, method: "get") do %>
+  <%= label_tag(:search, "Search for:") %>
+  <%= text_field_tag :search, params[:search], data: { autocomplete: autocomplete_car_name_cars_path } %>    <%= submit_tag("Search") %>
+<% end %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Vin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.make %></td>
+        <td><%= car.model %></td>
+        <td><%= car.Vin %></td>
+        <td><%= link_to 'Show', car %></td>
+        <td><%= link_to 'Edit', edit_car_path(car) %></td>
+        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car', new_car_path %><br>
+
+<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+
+
+<%#= form_tag(cars_path, method: :get) do %>
+  <%#= text_field_tag(:query, params[:query]) %>
+  <%#= submit_tag 'Search' %>
+
+<%# end %>
+
+
+
+
+<%# @cars.each do |car| %>
+<!--  <ul>-->
+<!--    <li><%#= link_to car.make, car_path(car)  %></li><br>-->
+<!--  </ul>-->
+<%# end %>
